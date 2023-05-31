@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Show Near Vidz",
+  "version": "1.0",
+  "description": "Quickly find Youtube videos published by the same channel, near the current playing video. This extentions adds a 'Show Near Vidz' button to a youtube video page.",
+  "icons": {
+    "16": "assets/images/icon@16x16.png",
+    "32": "assets/images/icon@32x32.png",
+    "48": "assets/images/icon@48x48.png",
+    "128": "assets/images/icon@128x128.png",
+    "1024": "assets/images/icon@1024x1024.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": ["https://youtube.com/*", "https://*.youtube.com/*"]
+    }
+  ]
+}

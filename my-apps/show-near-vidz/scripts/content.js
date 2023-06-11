@@ -90,7 +90,7 @@ console.log('Hello');
   function injectButtonsIntoDOM() {
     // routine
     const injectAndReturns = () => {
-      const parents = document.querySelectorAll('#top-level-buttons-computed');
+      const parents = document.querySelectorAll('.watch-active-metadata #top-level-buttons-computed');
       [...parents].forEach((parent) =>
         parent.insertAdjacentHTML(
           'afterbegin',
@@ -104,9 +104,7 @@ console.log('Hello');
         )
       );
       // try to get it
-      const nodes = document.querySelectorAll(
-        '#go-to-nearest-video-of-same-channel'
-      );
+      const nodes = document.querySelectorAll('#go-to-nearest-video-of-same-channel');
       return [...nodes];
     };
 
@@ -120,7 +118,6 @@ console.log('Hello');
     }
     return buttons;
   }
-
   /** Trigger some UI signal that ensure
    * user notices the target video card
    * @type {(linkNode: HTMLElement) => void}
@@ -161,18 +158,14 @@ console.log('Hello');
    */
   function getCurrentVideoId() {
     try {
-      const value = document
-        .querySelector('[itemprop="identifier"]')
-        .getAttribute('content');
+      const value = document.querySelector('[itemprop="identifier"]').getAttribute('content');
       if (value) return value;
     } catch (err) {
       /*not found*/
     }
 
     try {
-      const value = document
-        .querySelector('meta[itemprop="videoId"]')
-        .getAttribute('content');
+      const value = document.querySelector('meta[itemprop="videoId"]').getAttribute('content');
       if (value) return value;
     } catch (err) {
       /*not found*/
@@ -204,9 +197,7 @@ console.log('Hello');
    */
   function getCurrentVideoAuthorUrl() {
     try {
-      let value = document
-        .querySelector('[itemprop="author"] link[itemprop="url"]')
-        .getAttribute('href');
+      let value = document.querySelector('[itemprop="author"] link[itemprop="url"]').getAttribute('href');
       if (value) return value;
     } catch (err) {
       /*not found*/
@@ -245,8 +236,7 @@ console.log('Hello');
           logger.log('current_video_id', current_video_id);
           logger.log('current_video_author_url', current_video_author_url);
           if (!current_video_id) logger.throw('No video id found!');
-          if (!current_video_author_url)
-            logger.throw('No video author url found!');
+          if (!current_video_author_url) logger.throw('No video author url found!');
 
           //     save to local storage the id of the destination videos
           logger.log('Saving video info to storage...');
@@ -280,10 +270,8 @@ console.log('Hello');
       setTimeout(searchVideo, 200);
       async function searchVideo() {
         // routines
-        const getPageHeight = () =>
-          document.getElementsByTagName('ytd-app')[0].clientHeight;
-        const getVideoItemFromPage = () =>
-          document.querySelector(`a[href*="${video_id}"]`);
+        const getPageHeight = () => document.getElementsByTagName('ytd-app')[0].clientHeight;
+        const getVideoItemFromPage = () => document.querySelector(`a[href*="${video_id}"]`);
 
         // scroll to bottom so youtube loads more videos
         logger.log('Scrolling to bottom ...');
